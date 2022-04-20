@@ -12,28 +12,123 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
-</head>
-
-<body>
-
-
-    <!-- inicio da página de criação de quiz-->
     <header>
         <h1>BuzzQuizz</h1>
     </header>
 
-    <div class="created-quizzes">
-        <h2>
-            Você não criou nenhum quizz ainda :(
-        </h2>
-        <div class="create-quizz-button">
-            <div class="title">Criar Quizz</div>
+    <!-- inicio da página de criação de quiz-->
+    <div class="container-pagina-1">    
+        <div class="created-quizzes">
+            <h2>
+                Você não criou nenhum quizz ainda :(
+            </h2>
+            <div class="create-quizz-button" onclick="createNewQuiz()">
+                <div class="title">Criar Quizz</div>
+            </div>
         </div>
-    </div>
-    <!-- final da página de criação de quiz-->
+        <!-- final da página de criação de quiz-->
+        <!-- inicio da página com quizzes criados pelo usuário-->
+        <div class="my-quizzes hidden">
+            <div class="menu">
+                <div class="menu-page-title">Seus Quizzes</div>
+                <ion-icon name="add-circle" onclick="createNewQuiz()"></ion-icon>
+            </div>
+            
+            <div class="all-my-quizzes">
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--fim da página com quizzes criados pelo usuário-->
+        <!-- inicio da página de listagem de quizzes-->
+        <div class="friends-quizzes">
+            <div class="page-title">Todos os Quizzes</div>    
+            <div class="all-quizzes">
+                <!-- inicio da lista de quizzes-->
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+                <div class="quiz">
+                    <div class="quiz-title">
+                        Never Gonna Give You Up! Never gonna let you down! 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- final da página de listagem de quizzes-->
+
+
+
+
+
+
+
+
+
 
     <container>
-        <div class="creation beginning">
+        <div class="creation beginning hidden">
             <h3>Comece pelo começo</h3>
             <div class="question-block">
                 <input type="text" placeholder="Título do seu quizz">
@@ -51,9 +146,11 @@
             <h3>Crie suas perguntas</h3>
         </div>
     </container>
+<!--a página de criação de quiz-->
 
 
 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/quizzCreation.js"></script>
     <script src="scripts/quizzAnswer.js"></script>
