@@ -159,3 +159,32 @@ ion-icon{
 .hidden {
     display: none;
 }
+
+@media (max-width: 1100px) {
+    .created-quizzes {
+        width: 100%;
+        max-width: 340px;
+    }    
+
+    .all-quizzes {
+        width: 100%;
+        max-width: 340px;
+        height: 100%;
+    }
+
+    .page-title{
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .menu  {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .all-my-quizzes{
+        width: 100%;
+        max-width: 340px;
+    }
+
+}
