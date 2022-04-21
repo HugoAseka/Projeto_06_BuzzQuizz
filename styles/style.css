@@ -185,19 +185,34 @@ ion-icon{
     max-width: 1440px;
     height: 227px;
     margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-image{
     width: 100%;
     max-width: 1440px;
     height: 227px;
+    position: absolute;
+    filter: brightness(40%);
+}
+
+.main-quiz-title{
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;    
+    color: #FFFFFF;
 }
 
 .question-main{
     width: 100%;
     max-width: 759px;
     height: 676px;
-    background-color: #ffffff;
+    background-color: crimson;
     margin: 0 auto;
     margin-top: 42px;
     display: flex;
@@ -210,7 +225,6 @@ ion-icon{
     width: 100%;
     max-width: 688.16px;
     height: 137.99px;
-    background-color: aqua;
     margin: 0 auto;
     margin-top: 28px;
     display: flex;
@@ -236,6 +250,7 @@ ion-icon{
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
+    background-color: aqua;
 }
 
 .answer-unique{
