@@ -21,9 +21,12 @@ function renderizarQuizzes(infoResposta){
         let imagem = infoResposta[i].image;
 
     list.innerHTML += `<div class="quiz" onclick="quizAnswer(${id})">
+                        <img class="quiz-image" src="${imagem}"/>
+                        <img class="black-mask" src="/blackmask1.jpg"/>
                         <div class="quiz-title">${titulo}</div>
                         </div>`        
     }
+    console.log(infoResposta)
 }
 
 function quizAnswer(id){
@@ -33,8 +36,10 @@ function quizAnswer(id){
     });
 }
 
+
+
 function renderizarQuiz (infoQuiz){
-    console.log(infoQuiz.image);
+    console.log(infoQuiz);
     document.querySelector(".container-pagina-1").classList.add("hidden");
-    document.querySelector(".quiz-page").classList.remove("hidden");
+    document.querySelector(".container-pagina-2").classList.remove("hidden");
 }
