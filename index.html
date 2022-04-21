@@ -17,7 +17,7 @@
     </header>
 
     <!-- inicio da página de criação de quiz-->
-    <div class="container-pagina-1">    
+    <div class="container-pagina-1" hidden>
         <div class="created-quizzes">
             <h2>
                 Você não criou nenhum quizz ainda :(
@@ -33,26 +33,26 @@
                 <div class="menu-page-title">Seus Quizzes</div>
                 <ion-icon name="add-circle" onclick="createNewQuiz()"></ion-icon>
             </div>
-            
+
             <div class="all-my-quizzes">
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
             </div>
@@ -60,62 +60,62 @@
         <!--fim da página com quizzes criados pelo usuário-->
         <!-- inicio da página de listagem de quizzes-->
         <div class="friends-quizzes">
-            <div class="page-title">Todos os Quizzes</div>    
+            <div class="page-title">Todos os Quizzes</div>
             <div class="all-quizzes">
                 <!-- inicio da lista de quizzes-->
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
                 <div class="quiz">
                     <div class="quiz-title">
-                        Never Gonna Give You Up! Never gonna let you down! 
+                        Never Gonna Give You Up! Never gonna let you down!
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     <!-- final da página de listagem de quizzes-->
 
 
@@ -125,10 +125,10 @@
 
 
 
-
+    <!--a página de criação de quiz começa aqui-->
 
     <container>
-        <div class="creation beginning hidden">
+        <div class="creation beginning">
             <h3>Comece pelo começo</h3>
             <div class="question-block">
                 <input type="text" placeholder="Título do seu quizz">
@@ -137,16 +137,16 @@
                 <input type="text" placeholder="Quantidade de níveis do quizz">
 
             </div>
-            <span onclick="startQuestions()">Prosseguir para criar perguntas</span>
+            <span class="nextSection" onclick="startQuestions()">Prosseguir para criar perguntas</span>
         </div>
     </container>
 
-    <container hidden>
-        <div class="creation">
-            <h3>Crie suas perguntas</h3>
-        </div>
+    <container class="screen32">
+
+
+
     </container>
-<!--a página de criação de quiz-->
+
 
 
 
@@ -155,6 +155,6 @@
     <script src="scripts/quizzCreation.js"></script>
     <script src="scripts/quizzAnswer.js"></script>
     <script src="scripts/quizzListing.js"></script>
-</body>
+    </body>
 
 </html>
