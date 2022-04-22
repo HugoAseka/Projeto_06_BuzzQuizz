@@ -1,5 +1,5 @@
 container {
-    background-color: #e5e5e5;
+    background-color: #e5e5e585;
 }
 
 .creation {
@@ -45,6 +45,8 @@ container {
     text-align: center;
     border-radius: 10px;
     margin: 0 auto 50px auto;
+    color: white;
+    font-size: 26px;
 }
 
 .nextSection:hover {
@@ -121,4 +123,40 @@ container {
 
 .wrong-answer.three {
     padding-bottom: 20px;
+}
+
+.level {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto 60px auto;
+    padding: 0;
+    width: 100%;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding-bottom: 40px;
+}
+
+.level span {
+    width: 90%;
+    text-align: left;
+    font-size: 30px;
+    padding: 30px;
+}
+
+.level input {
+    height: 50px;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 90%;
+}
+
+.level input:nth-child(5) {
+    height: 200px;
+    text-align: center;
 }
