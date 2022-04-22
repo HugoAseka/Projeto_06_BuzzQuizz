@@ -43,27 +43,42 @@ function quizToPlay(id){
 function renderizarQuizz(infoResposta){
     console.log(infoResposta);
 
-    const banner = document.querySelector(".banner");
     let imagem = infoResposta.image;
     let titulo = infoResposta.title;
 
+    const banner = document.querySelector(".banner");
     banner.innerHTML = `<img class="main-image" src='${imagem}'/><div class="main-quiz-title">${titulo}</div>`
 
-   
-    const question = document.querySelector(".question-list")
-    const answerBox = document.querySelector(".answer-container")
+    let questionBox = document.querySelector(".question-list");
 
     for (let i = 0; i < infoResposta.questions.length; i++){
-        question.innerHTML += `<div class="question-main"><div class="question-main-title" style="background-color: ${infoResposta.questions[i].color};"><div class="question-title">${infoResposta.questions[i].title}</div></div></div>`
-                                                         
+        for (let k = 0; k <infoResposta.questions[i].answers.length; k++){
+            console.log(infoResposta.questions[i]);
+            questionBox.innerHTML += ` <div class="question-main">
+        <div class="question-main-title" style="background-color: ${infoResposta.questions[i].color};"><div class="question-title">${infoResposta.questions[i].title}</div></div>
+        <div class="answer-container">
+                        <div class="answers-box">
+                            <div class="answer-unique"><img class="answer-unique-image" src=''><div class="answer-unique-text">Gatineo</div></div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''><div class="answer-unique-text">Gatineo</div></div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''><div class="answer-unique-text">Gatineo</div></div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''><div class="answer-unique-text">Gatineo</div></div>
+                        </div>
+                    </div>    
+        </div>
+        ` 
+            }
+        }    
 
-        }
 
-
-
-    }    
+    
+}
 
 
 
 
-
+/* let questionBox = document.querySelector(".question-list");
+    for (let i = 0; i < infoResposta.questions.length; i++){
+        questionBox.innerHTML += ` <div class="question-main">
+        <div class="question-main-title" style="background-color: ${infoResposta.questions[i].color};"><div class="question-title">${infoResposta.questions[i].title}</div></div></div>`
+    } */
+  
