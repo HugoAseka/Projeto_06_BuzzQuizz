@@ -173,7 +173,7 @@ function renderizeLevels() {
     let container = document.querySelector(".screen32");
     container.innerHTML = `<h3>Agora, decida os níveis!</h3>`;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < numberOfLevels; i++) {
         container.innerHTML +=
             `<div class="level lvl${i}">
             <span>Nível ${i}</span>
@@ -190,7 +190,7 @@ function toSuccess() {
     let level;
     let obj = {};
     quizz.levels = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < numberOfLevels; i++) {
         level = document.querySelector(`.lvl${i}`);
 
         quizz.levels[i] =
@@ -206,7 +206,7 @@ function toSuccess() {
         }
     }
     let counter = 0;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < numberOfLevels; i++) {
         if (quizz.levels[i].minValue === 0) counter++;
         console.log(counter);
     }
@@ -225,8 +225,6 @@ const levelConditions = (i) => {
     return true;
 }
 
-
-renderizeLevels();
 // quizz.levels = [
 // {
 //     title: "",
