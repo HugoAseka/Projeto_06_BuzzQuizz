@@ -17,7 +17,7 @@
     </header>
 
     <!-- inicio da página de criação de quiz-->
-    <div class="container-pagina-1">
+    <div class="container-pagina-1" hidden>
         <div class="created-quizzes">
             <h2>
                 Você não criou nenhum quizz ainda :(
@@ -62,8 +62,8 @@
         <div class="friends-quizzes">
             <div class="page-title">Todos os Quizzes</div>
             <div class="all-quizzes">
-                
-                    
+
+
             </div>
         </div>
     </div>
@@ -71,12 +71,12 @@
 
 
     <!-- inicio da página de um quiz individual-->
-        <div class="quiz-page hidden">
-            <div class="banner">
-                
-            </div>
+    <div class="quiz-page hidden">
+        <div class="banner">
 
         </div>
+
+    </div>
     <!-- fim da página de um quiz individual-->
 
 
@@ -88,21 +88,22 @@
 
     <!--a página de criação de quiz começa aqui-->
 
-    <container hidden>
+    <container >
         <div class="creation beginning">
             <h3>Comece pelo começo</h3>
             <div class="question-block">
-                <input type="text" placeholder="Título do seu quizz">
-                <input type="text" placeholder="URL da imagem do seu quizz">
-                <input type="text" placeholder="Quantidade de perguntas do quizz">
-                <input type="text" placeholder="Quantidade de níveis do quizz">
+                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="Título do seu quizz">
+                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="URL da imagem do seu quizz">
+                <input type="text" onkeypress="enterStartQuestions(event)"
+                    placeholder="Quantidade de perguntas do quizz">
+                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="Quantidade de níveis do quizz">
 
             </div>
             <span class="nextSection" onclick="startQuestions()">Prosseguir para criar perguntas</span>
         </div>
     </container>
 
-    <container hidden class="screen32">
+    <container class="screen32">
 
 
 
