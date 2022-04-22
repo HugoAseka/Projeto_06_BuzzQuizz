@@ -16,7 +16,7 @@
         <h1>BuzzQuizz</h1>
     </header>
     <!-- inicio da página 1-->
-    <div class="container-pagina-1 ">
+    <div class="container-pagina-1 hidden ">
         <div class="created-quizzes">
             <h2>
                 Você não criou nenhum quizz ainda :(
@@ -70,10 +70,6 @@
         <div class="quiz-page ">
             <div class="banner"></div>
             <div class="question-list">
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d40413b04328d70a0b02955025cba62b9f814de
                 <div class="question-main">
                     <div class="question-main-title" style="background-color: aqua;">
                         <div class="question-title">Titulo da questão</div>
@@ -111,26 +107,27 @@
     <!--a página de criação de quiz começa aqui-->
 
     <container>
-        <div class="creation beginning hidden">
+        <div class="creation beginning ">
             <h3>Comece pelo começo</h3>
             <div class="question-block">
-                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="Título do seu quizz">
-                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="URL da imagem do seu quizz">
-                <input type="text" onkeypress="enterStartQuestions(event)"
-                    placeholder="Quantidade de perguntas do quizz">
-                <input type="text" onkeypress="enterStartQuestions(event)" placeholder="Quantidade de níveis do quizz">
+                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Título do seu quizz">
+                <input type="text" onkeypress="enterToQuestions(event)" placeholder="URL da imagem do seu quizz">
+                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Quantidade de perguntas do quizz">
+                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Quantidade de níveis do quizz">
 
             </div>
-            <span class="nextSection" onclick="startQuestions()">Prosseguir para criar perguntas</span>
+            <span class="nextSection" onclick="toQuestions()">Prosseguir para criar perguntas</span>
         </div>
     </container>
 
     <container class="screen32">
-
-
-
-
-
+        <h3>Seu quizz está pronto!</h3>
+        <div class="success">
+            <img src="https://www.w3schools.com/howto/img_snow_wide.jpg">
+            <div class="titleSuccess">O quanto você sabe sobre montanhas?</div>
+        </div>
+        <span class="nextSection" onclick="">Acessar Quizz</span>
+        <span class="returnHome">Voltar para home</span>
     </container>
 
 

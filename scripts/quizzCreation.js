@@ -30,11 +30,25 @@ let quizz = {
         }
     ]
 };
+
+
 let numberOfQuestions = 0;
 let numberOfLevels = 0;
+let userIds = [];
+let userArrays = [];
 
 
-function startQuestions() {
+// localStorage.setItem('userIds', '[91,120,126,130]');
+userIds = JSON.parse(localStorage.getItem("userIds"));
+localStorage.setItem('userIds', userIds);
+
+for (let i = 0; i < userIds.length; i++) {
+    userArrays.push(JSON.parse(localStorage.getItem(userIds[i])));
+}
+
+
+
+function toQuestions() {
     quizz.title = document.querySelector(".question-block :nth-child(1)").value;
     quizz.image = document.querySelector(".question-block :nth-child(2)").value;
     numberOfQuestions = document.querySelector(".question-block :nth-child(3)").value;
@@ -56,10 +70,10 @@ function startQuestions() {
 }
 
 
-function enterStartQuestions(event) {
+function enterToQuestions(event) {
     let unicode = event.which;
     if (unicode === 13) {
-        startQuestions();
+        toQuestions();
     }
 }
 
@@ -104,10 +118,10 @@ function renderizeQuestions() {
             </div>
         </div>`
     }
-    container.innerHTML += `<span class="nextSection" onclick="startLevels()">Prosseguir para criar perguntas</span>`
+    container.innerHTML += `<span class="nextSection" onclick="toLevels()">Prosseguir para criar perguntas</span>`
 }
 
-function startLevels() {
+function toLevels() {
     let question = "";
     let current;
     for (i = 0; i < numberOfQuestions; i++) {
@@ -176,7 +190,7 @@ function renderizeLevels() {
     for (i = 0; i < numberOfLevels; i++) {
         container.innerHTML +=
             `<div class="level lvl${i}">
-            <span>Nível ${i}</span>
+            <span>Nível ${i + 1}</span>
             <input type="text" placeholder="Título do nível">
             <input type="text" placeholder="% de acerto mínima">
             <input type="text" placeholder="URL da imagem do nível">
@@ -186,6 +200,8 @@ function renderizeLevels() {
     container.innerHTML += `<span class="nextSection" onclick="toSuccess()">Finalizar Quizz</span>`;
 
 }
+
+
 function toSuccess() {
     let level;
     let obj = {};
@@ -208,12 +224,16 @@ function toSuccess() {
     let counter = 0;
     for (let i = 0; i < numberOfLevels; i++) {
         if (quizz.levels[i].minValue === 0) counter++;
-        console.log(counter);
     }
     if (counter <= 0) {
         alert("Pelo menos um um nível precisa de 0% de acerto mínimo");
         return
     }
+
+    document.querySelector(".screen32").innerHTML = "";
+    uploadQuiz();
+
+
 }
 
 const levelConditions = (i) => {
@@ -233,3 +253,30 @@ const levelConditions = (i) => {
 //     minValue: 0
 //     }
 // ]
+function uploadQuiz() {
+
+    const requisition = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
+    requisition.then((response) => {
+        let id = response.data.id;
+        let serializedQuizz = JSON.stringify(response.data);
+        localStorage.setItem(id, serializedQuizz);
+        let deserializedQuizz = JSON.parse(localStorage.getItem(id));
+
+    })
+
+}
+localStorageQuizz();
+
+function localStorageQuizz() {
+
+    console.log(userIds);
+
+
+    console.log(userArrays);
+
+}
+
+
+function renderizeSuccess() {
+
+}
