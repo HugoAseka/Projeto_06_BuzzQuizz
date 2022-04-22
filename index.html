@@ -15,9 +15,8 @@
     <header>
         <h1>BuzzQuizz</h1>
     </header>
-
-    <!-- inicio da página de criação de quiz-->
-    <div class="container-pagina-1" hidden>
+    <!-- inicio da página 1-->
+    <div class="container-pagina-1">
         <div class="created-quizzes">
             <h2>
                 Você não criou nenhum quizz ainda :(
@@ -33,7 +32,6 @@
                 <div class="menu-page-title">Seus Quizzes</div>
                 <ion-icon name="add-circle" onclick="createNewQuiz()"></ion-icon>
             </div>
-
             <div class="all-my-quizzes">
                 <div class="quiz">
                     <div class="quiz-title">
@@ -60,24 +58,45 @@
         <!--fim da página com quizzes criados pelo usuário-->
         <!-- inicio da página de listagem de quizzes-->
         <div class="friends-quizzes">
-            <div class="page-title">Todos os Quizzes</div>
+            <div class="page-title">Todos os Quizzes
+            </div>
             <div class="all-quizzes">
-
-
             </div>
         </div>
     </div>
-    <!-- final da página de listagem de quizzes-->
+    <!-- final da página 1-->
+    <!-- inicio da página 2 -->
+    <div class="container-pagina-2 hidden">
+        <div class="quiz-page ">
+            <div class="banner"></div>
+            <div class="question-list">
 
-
-    <!-- inicio da página de um quiz individual-->
-    <div class="quiz-page hidden">
-        <div class="banner">
+                <div class="question-main">
+                    <div class="question-main-title" style="background-color: aqua;">
+                        <div class="question-title">Titulo da questão</div>
+                    </div>
+                    <div class="answer-container">
+                        <div class="answers-box">
+                            <div class="answer-unique"><img class="answer-unique-image" src=''>
+                                <div class="answer-unique-text">Gatineo</div>
+                            </div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''>
+                                <div class="answer-unique-text">Gatineo</div>
+                            </div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''>
+                                <div class="answer-unique-text">Gatineo</div>
+                            </div>
+                            <div class="answer-unique"><img class="answer-unique-image" src=''>
+                                <div class="answer-unique-text">Gatineo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
     </div>
-    <!-- fim da página de um quiz individual-->
+    <!-- final da pagina 2-->
 
 
 
@@ -88,8 +107,8 @@
 
     <!--a página de criação de quiz começa aqui-->
 
-    <container >
-        <div class="creation beginning">
+    <container>
+        <div class="creation beginning hidden">
             <h3>Comece pelo começo</h3>
             <div class="question-block">
                 <input type="text" onkeypress="enterStartQuestions(event)" placeholder="Título do seu quizz">
@@ -111,7 +130,7 @@
 
 
 
-
+    <!--Scripts-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/quizzCreation.js"></script>
