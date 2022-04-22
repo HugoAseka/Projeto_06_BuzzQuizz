@@ -66,7 +66,7 @@ function enterStartQuestions(event) {
 
 
 let isURL = (str) => {
-    if ((str.substring(0, 8) === "https://" || str.substring(0, 3) === "www") && str.substring(str.length - 4, str.length) === ".com") {
+    if ((str.substring(0, 8) === "https://" || str.substring(0, 3) === "www")) {
         return true;
     }
     return false;
@@ -74,10 +74,10 @@ let isURL = (str) => {
 
 
 function renderizeQuestions() {
-    page32 = document.querySelector(".screen32");
-    page32.innerHTML = "<h3>Crie suas perguntas</h3>";
+    container = document.querySelector(".screen32");
+    container.innerHTML = "<h3>Crie suas perguntas</h3>";
     for (let i = 1; i <= numberOfQuestions; i++) {
-        page32.innerHTML += `
+        container.innerHTML += `
         <div class="question-box question${i}">
             <div class="question">
                 <span>Pergunta ${i}</span>
@@ -104,7 +104,7 @@ function renderizeQuestions() {
             </div>
         </div>`
     }
-    page32.innerHTML += `<span class="nextSection" onclick="startLevels()">Prosseguir para criar perguntas</span>`
+    container.innerHTML += `<span class="nextSection" onclick="startLevels()">Prosseguir para criar perguntas</span>`
 }
 
 function startLevels() {
@@ -141,9 +141,9 @@ function startLevels() {
             alert("Corrija as informações da pergunta " + (i + 1));
             return
         }
-        
+
     }
-    console.log("oi")
+    renderizeLevels();
 }
 
 const isHex = (str) => {
@@ -169,4 +169,67 @@ const AnswerConditions = (i) => {
     return true
 }
 
+function renderizeLevels() {
+    let container = document.querySelector(".screen32");
+    container.innerHTML = `<h3>Agora, decida os níveis!</h3>`;
 
+    for (i = 0; i < numberOfLevels; i++) {
+        container.innerHTML +=
+            `<div class="level lvl${i}">
+            <span>Nível ${i}</span>
+            <input type="text" placeholder="Título do nível">
+            <input type="text" placeholder="% de acerto mínima">
+            <input type="text" placeholder="URL da imagem do nível">
+            <input type="text" placeholder="Descrição do nível">
+        </div>`
+    }
+    container.innerHTML += `<span class="nextSection" onclick="toSuccess()">Finalizar Quizz</span>`;
+
+}
+function toSuccess() {
+    let level;
+    let obj = {};
+    quizz.levels = [];
+    for (let i = 0; i < numberOfLevels; i++) {
+        level = document.querySelector(`.lvl${i}`);
+
+        quizz.levels[i] =
+        {
+            title: level.querySelector("input:nth-child(2)").value,
+            image: level.querySelector("input:nth-child(4)").value,
+            text: level.querySelector("input:nth-child(5)").value,
+            minValue: Number(level.querySelector("input:nth-child(3)").value)
+        }
+        if (!levelConditions(i)) {
+            alert(`Preencha os dados do nível ${i + 1} corretamente`);
+            return;
+        }
+    }
+    let counter = 0;
+    for (let i = 0; i < numberOfLevels; i++) {
+        if (quizz.levels[i].minValue === 0) counter++;
+        console.log(counter);
+    }
+    if (counter <= 0) {
+        alert("Pelo menos um um nível precisa de 0% de acerto mínimo");
+        return
+    }
+}
+
+const levelConditions = (i) => {
+    let lvl = quizz.levels[i];
+    if (lvl.title.length < 10) return false;
+    if (isNaN(lvl.minValue) || lvl.minValue < 0 || lvl.minValue > 100) return false;
+    if (!isURL(lvl.image)) return false;
+    if (lvl.text.length < 30) return false;
+    return true;
+}
+
+// quizz.levels = [
+// {
+//     title: "",
+//     image: "",
+//     text: "",
+//     minValue: 0
+//     }
+// ]
