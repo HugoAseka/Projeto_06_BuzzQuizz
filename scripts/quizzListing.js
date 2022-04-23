@@ -41,7 +41,7 @@ function quizToPlay(id){
     
     const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then((resposta) => { 
-        randomizeQuizz(resposta.data);
+       randomizeQuizz(resposta.data);
         renderizarQuizz(resposta.data);
     });
 
@@ -50,12 +50,15 @@ function quizToPlay(id){
 
 }
 
-function randomizeQuizz(infoResposta){
-    console.log(infoResposta);
-    console.log('gabegabegabe');
-}
 
+function randomizeQuizz (infoResposta){
 
+    for (let i = 0; i < infoResposta.questions.length; i++){
+        
+       let shufflin = infoResposta.questions[i].answers.sort( () => .5 - Math.random() );
+        console.log(infoResposta.questions[i].answers);      
+    }
+} 
 
 function renderizarQuizz(infoResposta){
    
@@ -70,15 +73,12 @@ function renderizarQuizz(infoResposta){
 
     for (let i = 0; i < infoResposta.questions.length; i++){
         
-            console.log(infoResposta.questions[i]);
             questionBox.innerHTML += ` <div class="question-main">
                                             <div class="question-main-title" style="background-color: ${infoResposta.questions[i].color};"><div class="question-title">${infoResposta.questions[i].title}</div></div>
                     <div class="answer-container"><div class='answers-box' id='${i+1}'>`
         
                     for (let k = 0; k <infoResposta.questions[i].answers.length; k++){
             let answerBox = document.querySelector(`#${CSS.escape(i+1)}`);
-            answerBox.innerHTML += `<div class="answer-unique"><img class="answer-unique-image" src='${infoResposta.questions[i].answers[k].image}'><div class="answer-unique-text">${infoResposta.questions[i].answers[k].text}</div></div>` } questionBox.innerHTML += `</div></div></div>`;
-        }  
-
+            answerBox.innerHTML += `<div class="answer-unique" id='${k}'><img class="answer-unique-image" src='${infoResposta.questions[i].answers[k].image}'><div class="answer-unique-text">${infoResposta.questions[i].answers[k].text}</div></div>` } questionBox.innerHTML += `</div></div></div>`;
+    }  
 }
-
