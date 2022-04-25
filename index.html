@@ -70,7 +70,7 @@
         <div class="quiz-page ">
             <div class="banner"></div>
             <div class="question-list">
-              <!--<div class="question-main">
+                <!--<div class="question-main">
                     <div class="question-main-title" style="background-color: aqua;">
                         <div class="question-title">Titulo da questão</div>
                     </div>
@@ -93,51 +93,46 @@
                 </div> 
             </div>  -->
 
-        </div>
-    </div>
-    <!-- final da pagina 2-->
-
-
-
-
-
-
-
-
-    <!--a página de criação de quiz começa aqui-->
-
-    <container>
-        <div class="creation beginning hidden ">
-            <h3>Comece pelo começo</h3>
-            <div class="question-block">
-                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Título do seu quizz">
-                <input type="text" onkeypress="enterToQuestions(event)" placeholder="URL da imagem do seu quizz">
-                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Quantidade de perguntas do quizz">
-                <input type="text" onkeypress="enterToQuestions(event)" placeholder="Quantidade de níveis do quizz">
-
             </div>
-            <span class="nextSection" onclick="toQuestions()">Prosseguir para criar perguntas</span>
         </div>
-    </container>
-
-    <container class="screen32 hidden">
-        <h3>Seu quizz está pronto!</h3>
-        <div class="success">
-            <img src="https://www.w3schools.com/howto/img_snow_wide.jpg">
-            <div class="titleSuccess">O quanto você sabe sobre montanhas?</div>
-        </div>
-        <span class="nextSection" onclick="">Acessar Quizz</span>
-        <span class="returnHome">Voltar para home</span>
-    </container>
+        <!-- final da pagina 2-->
 
 
 
-    <!--Scripts-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="scripts/quizzCreation.js"></script>
-    <script src="scripts/quizzAnswer.js"></script>
-    <script src="scripts/quizzListing.js"></script>
-    </body>
+
+
+
+
+
+        <!--a página de criação de quiz começa aqui-->
+
+        <container>
+            <div class="creation beginning hidden ">
+                <h3>Comece pelo começo</h3>
+                <div class="question-block">
+                    <input type="text" onkeypress="enterToQuestions(event)" placeholder="Título do seu quizz">
+                    <input type="text" onkeypress="enterToQuestions(event)" placeholder="URL da imagem do seu quizz">
+                    <input type="text" onkeypress="enterToQuestions(event)"
+                        placeholder="Quantidade de perguntas do quizz">
+                    <input type="text" onkeypress="enterToQuestions(event)" placeholder="Quantidade de níveis do quizz">
+
+                </div>
+                <span class="nextSection" onclick="toQuestions()">Prosseguir para criar perguntas</span>
+            </div>
+        </container>
+
+        <container class="screen32">
+            
+        </container>
+
+
+
+        <!--Scripts-->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="scripts/quizzCreation.js"></script>
+        <script src="scripts/quizzAnswer.js"></script>
+        <script src="scripts/quizzListing.js"></script>
+        </body>
 
 </html>

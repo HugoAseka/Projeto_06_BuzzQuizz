@@ -35,18 +35,22 @@ let quizz = {
 let numberOfQuestions = 0;
 let numberOfLevels = 0;
 let userIds = [];
-let userArrays = [];
-
-
-// localStorage.setItem('userIds', '[91,120,126,130]');
-userIds = JSON.parse(localStorage.getItem("userIds"));
-localStorage.setItem('userIds', userIds);
-
-for (let i = 0; i < userIds.length; i++) {
-    userArrays.push(JSON.parse(localStorage.getItem(userIds[i])));
+if (localStorage.getItem("userIds") !== null) {
+    userIds = JSON.parse(localStorage.getItem("userIds"));
 }
 
 
+
+
+// localStorage.setItem('userIds', '[91,120,126,130]');
+//userIds = JSON.parse(localStorage.getItem("userIds"));
+
+
+
+
+function validateUrl(value) {
+    return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
+}
 
 function toQuestions() {
     quizz.title = document.querySelector(".question-block :nth-child(1)").value;
@@ -61,7 +65,7 @@ function toQuestions() {
         alert("Número mínimo de níveis é 2!");
         return;
     }
-    if (!(quizz.title.length > 20 && quizz.title.length < 65 && isURL(quizz.image))) {
+    if (!(quizz.title.length > 20 && quizz.title.length < 65 && validateUrl(quizz.image))) {
         alert("Preencha os dados corretamente.")
         return;
     }
@@ -77,14 +81,6 @@ function enterToQuestions(event) {
     }
 }
 
-
-
-let isURL = (str) => {
-    if ((str.substring(0, 8) === "https://" || str.substring(0, 3) === "www")) {
-        return true;
-    }
-    return false;
-}
 
 
 function renderizeQuestions() {
@@ -151,7 +147,7 @@ function toLevels() {
             image: question.querySelector(".wrong-answer.three input:nth-child(2)").value,
             isCorrectAnswer: false
         }
-        if (!AnswerConditions(i)) {
+        if (!questionsConditions(i)) {
             alert("Corrija as informações da pergunta " + (i + 1));
             return
         }
@@ -161,23 +157,23 @@ function toLevels() {
 }
 
 const isHex = (str) => {
-    if (str[0] !== "#") {
+    if (str[0] !== "#" || str.length > 8) {
         return false;
     }
     let hex = (str.substring(1, 7)).toLowerCase();
     for (let i = 0; i < hex.length; i++) {
-        if (hex[i] !== "a" && hex[i] !== "b" && hex[i] !== "c" && hex[i] !== "d" && hex[i] !== "e" && hex[i] !== "f") {
+        if (hex[i] !== "a" && hex[i] !== "b" && hex[i] !== "c" && hex[i] !== "d" && hex[i] !== "e" && hex[i] !== "f" && isNaN(hex[i])) {
             return false;
         }
     }
     return true;
 }
 
-const AnswerConditions = (i) => {
+const questionsConditions = (i) => {
     if (!(quizz.questions[i].title.length > 20 && isHex(quizz.questions[i].color))) return false
     if (quizz.questions[i].answers[0].text === "" || quizz.questions[i].answers[1].text === "") return false
-    if (!isURL(quizz.questions[i].answers[0].image) || !isURL(quizz.questions[i].answers[1].image)
-        || !isURL(quizz.questions[i].answers[2].image) || !isURL(quizz.questions[i].answers[3].image)) {
+    if (!validateUrl(quizz.questions[i].answers[0].image) || !validateUrl(quizz.questions[i].answers[1].image)
+        || !validateUrl(quizz.questions[i].answers[2].image) || !validateUrl(quizz.questions[i].answers[3].image)) {
         return false;
     }
     return true
@@ -230,53 +226,41 @@ function toSuccess() {
         return
     }
 
-    document.querySelector(".screen32").innerHTML = "";
     uploadQuiz();
 
+}
 
+function renderizeSuccess(id) {
+    document.querySelector(".screen32").innerHTML = `
+             <h3>Seu quizz está pronto!</h3>
+            <div class="success">
+                <img src=${quizz.image}>
+                <div class="titleSuccess">O quanto você sabe sobre montanhas?</div>
+            </div>
+            <span class="nextSection" onclick="quizToPlay(${id})">Acessar Quizz</span>
+            <span class="returnHome" onclick = "window.location.reload()">Voltar para home</span>`
 }
 
 const levelConditions = (i) => {
     let lvl = quizz.levels[i];
     if (lvl.title.length < 10) return false;
     if (isNaN(lvl.minValue) || lvl.minValue < 0 || lvl.minValue > 100) return false;
-    if (!isURL(lvl.image)) return false;
+    if (!validateUrl(lvl.image)) return false;
     if (lvl.text.length < 30) return false;
     return true;
 }
 
-// quizz.levels = [
-// {
-//     title: "",
-//     image: "",
-//     text: "",
-//     minValue: 0
-//     }
-// ]
 function uploadQuiz() {
 
     const requisition = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizz);
     requisition.then((response) => {
         let id = response.data.id;
-        let serializedQuizz = JSON.stringify(response.data);
-        localStorage.setItem(id, serializedQuizz);
-        let deserializedQuizz = JSON.parse(localStorage.getItem(id));
-
+        userIds.push(id);
+        let serializedUserIds = JSON.stringify(userIds);
+        localStorage.setItem("userIds", serializedUserIds);
+        renderizeSuccess(id);
     })
 
 }
-localStorageQuizz();
-
-function localStorageQuizz() {
-
-    console.log(userIds);
 
 
-    console.log(userArrays);
-
-}
-
-
-function renderizeSuccess() {
-
-}
