@@ -221,8 +221,8 @@ function toSuccess() {
     for (let i = 0; i < numberOfLevels; i++) {
         if (quizz.levels[i].minValue === 0) counter++;
     }
-    if (counter <= 0) {
-        alert("Pelo menos um um nível precisa de 0% de acerto mínimo");
+    if (counter === 0 || counter === numberOfLevels) {
+        alert("Pelo menos um nível precisa de 0% de acerto mínimo");
         return
     }
 
