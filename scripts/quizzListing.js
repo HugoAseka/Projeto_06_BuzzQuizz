@@ -26,6 +26,10 @@ function renderizeQuizzes(infoResponse) {
     }
 }
 
+function goHome(){
+    window.location.reload();
+}
+
 // começo renderizar quizzes do usuario
 
 if (userIds.length !== 0) {
