@@ -136,16 +136,22 @@ function answerQuizz(click){
 
     let questionID = click.id[0] * 1;
     let answerID = click.id[1] * 1;
-    let isCorrectAnswerID = click.id.slice(2,7);
-    console.log(answerID)
-    for (i = 0; i < 4; i++){
+    let answersBox = document.querySelectorAll(".answers-box");
+    let answerImgUnique = answersBox[questionID].querySelectorAll(".answer-unique img");
+    let answerTextUnique = answersBox[questionID].querySelectorAll(".answer-unique .answer-unique-text");
+
+    for (let i = 0; i < 4; i++){
         if (i !== answerID){
-            if (isCorrectAnswerID === 'false'){
-                console.log(`${questionID}${i}${isCorrectAnswerID}`);
-            }
-            
+            document.getElementById(`${answerImgUnique[i].id}`).style.opacity = 0.5;
+        } 
+
+        if ((answerTextUnique[i].id).slice(6,11) === 'true'){
+            document.getElementById(`${answerTextUnique[i].id}`).style.color = "green";
+        } else {
+            document.getElementById(`${answerTextUnique[i].id}`).style.color = "red";
         }
+        
     }
-    
+
 
 }
