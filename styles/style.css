@@ -3,7 +3,7 @@ body {
     background-color: #fafafa;
 }
 
-header{
+header {
     height: 69px;
     width: 100%;
     background-color: #EC362D;
@@ -60,7 +60,7 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .title {
@@ -68,10 +68,10 @@ header h1 {
     font-weight: 400;
     font-size: 21px;
     line-height: 25px;
-    color: #EC362D; 
+    color: #EC362D;
 }
 
-.page-title{
+.page-title {
     width: 100%;
     max-width: 1051px;
     margin: 0 auto;
@@ -84,7 +84,8 @@ header h1 {
     color: #000000;
 }
 
-.all-quizzes {
+.all-quizzes,
+.local-quizzes {
     width: 100%;
     max-width: 1051px;
     height: 100%;
@@ -103,10 +104,11 @@ header h1 {
     border-radius: 5px;
     display: flex;
     position: relative;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-.quiz-title{
+
+.quiz-title {
     height: 54px;
     width: 301px;
     margin: 0 auto;
@@ -123,7 +125,7 @@ header h1 {
 
 }
 
-.quiz-image{
+.quiz-image {
     width: 340px;
     height: 181px;
     border-radius: 5px;
@@ -136,32 +138,32 @@ header h1 {
     bottom: 0;
 }
 
-.menu  {
+.menu {
     width: 100%;
     max-width: 1051px;
-    height: 35px;
+    height: fit-content;
     margin: 0 auto;
     margin-top: 65px;
-    display: flex;
-    align-items: center;
+
 }
 
-.menu-page-title{
+.menu-page-title {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
     color: #000000;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-ion-icon{
+ion-icon {
     font-size: 31px;
     color: #EC362D;
     cursor: pointer;
 }
 
-.all-my-quizzes{
+.all-my-quizzes {
     width: 100%;
     max-width: 1051px;
     height: 100%;
@@ -176,7 +178,7 @@ ion-icon{
     display: none;
 }
 
-.container-pagina-2{
+.container-pagina-2 {
     background-color: #e5e5e5;
 }
 
@@ -191,7 +193,7 @@ ion-icon{
     justify-content: center;
 }
 
-.main-image{
+.main-image {
     width: 100%;
     max-width: 1440px;
     height: 227px;
@@ -199,16 +201,16 @@ ion-icon{
     filter: brightness(40%);
 }
 
-.main-quiz-title{
+.main-quiz-title {
     position: absolute;
     font-style: normal;
     font-weight: 400;
     font-size: 39px;
-    line-height: 46px;    
+    line-height: 46px;
     color: #FFFFFF;
 }
 
-.question-main{
+.question-main {
     width: 100%;
     max-width: 759px;
     height: 676px;
@@ -221,7 +223,7 @@ ion-icon{
     background-color: #FFFFFF;
 }
 
-.question-main-title{
+.question-main-title {
     width: 100%;
     max-width: 688.16px;
     height: 137.99px;
@@ -232,7 +234,7 @@ ion-icon{
     justify-content: center;
 }
 
-.question-title{
+.question-title {
     font-style: normal;
     font-weight: 700;
     font-size: 23px;
@@ -245,7 +247,7 @@ ion-icon{
     max-width: 860;
 }
 
-.answers-box{
+.answers-box {
     width: 100%;
     max-width: 688.16px;
     height: 440px;
@@ -257,7 +259,7 @@ ion-icon{
     align-content: space-between;
 }
 
-.answer-unique{
+.answer-unique {
     width: 100%;
     max-width: 330px;
     height: 205px;
@@ -266,16 +268,16 @@ ion-icon{
     align-items: center;
 }
 
-.opacity{
+.opacity {
     opacity: 0.5;
 }
 
-.answer-unique-image{
+.answer-unique-image {
     width: 320px;
     height: 170px;
 }
 
-.answer-unique-text{
+.answer-unique-text {
     max-width: 320px;
     height: 35px;
     display: flex;
@@ -290,12 +292,12 @@ ion-icon{
     overflow: hidden;
 }
 
-.green{
+.green {
     color: green;
-    opacity: 1;   
+    opacity: 1;
 }
 
-.red{
+.red {
     color: red;
     opacity: 1;
 }
@@ -402,7 +404,7 @@ ion-icon{
     .created-quizzes {
         width: 100%;
         max-width: 340px;
-    }    
+    }
 
     .all-quizzes {
         width: 100%;
@@ -410,22 +412,22 @@ ion-icon{
         height: 100%;
     }
 
-    .page-title{
+    .page-title {
         width: 100%;
         max-width: 340px;
     }
 
-    .menu  {
+    .menu {
         width: 100%;
         max-width: 340px;
     }
 
-    .all-my-quizzes{
+    .all-my-quizzes {
         width: 100%;
         max-width: 340px;
     }
 
-    .white-mask{
+    .white-mask {
         width: 320px;
         height: 170px;
     }
