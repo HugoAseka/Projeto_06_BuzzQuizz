@@ -6,11 +6,35 @@ function createNewQuiz() {
 const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
 promise.then((resposta) => {
     renderizarQuizzes(resposta.data);
+    renderizeUserQuizzes(resposta.data);
 });
 promise.catch(erro => {
     alert(erro.resposta.status);
 })
 
+// começo renderizar quizzes do usuario
+renderizeUserQuizzes();
+function renderizeUserQuizzes() {
+    const list = document.querySelector(".my-quizzes");
+
+    for (let i = 0; i < userIds.length; i++) {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${userIds[i]}`)
+        promise.then((response) => {
+            console.log(response.data)
+            console.log(userIds[i]);
+            let id = response.data.id;
+            let titulo = response.data.title;
+            let imagem = response.data.image;
+
+            list.innerHTML += `<div class="quiz" onclick="quizToPlay(${id})">
+                                <img class="quiz-image" src="${imagem}"/>
+                                <img class="black-mask" src="/blackmask1.jpg"/>
+                                <div class="quiz-title">${titulo}
+                                </div>
+                            </div>`
+        })
+    }
+}
 function renderizarQuizzes(infoResposta) {
     const list = document.querySelector(".all-quizzes");
     //lista.innerHTML = '';
@@ -79,7 +103,7 @@ function answerQuizz(click) {
         console.log("Resposta Errada");
     }
 
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
         selectedElement.removeAttribute('onclick');
     }
 
