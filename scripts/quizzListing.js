@@ -1,3 +1,5 @@
+let individualQuizz = {};
+
 function createNewQuiz() {
     document.querySelector(".container-pagina-1").classList.add("hidden");
     document.querySelector(".creation").classList.remove("hidden");
@@ -27,6 +29,7 @@ function quizToPlay(id){
     const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/4`);
     promise.then((response) => { 
         randomizeQuizz(response.data);
+        individualQuizz = response.data;
     });
     document.querySelector(".container-pagina-1").classList.add("hidden");
     document.querySelector(".container-pagina-2").classList.remove("hidden");
@@ -73,8 +76,7 @@ function renderizeQuizz(infoResponse){
                 </div>
             </div>`;            
             }  
-}                   
-
+}
 
 /*    if (verifyAnswer === "false"){
         document.getElementById(`text${click.id}`).style.color = "red";
@@ -84,14 +86,7 @@ function renderizeQuizz(infoResponse){
     } */
 //   document.getElementById(`${click.id}`).style.opacity = 0.5;
 
-function answerQuizz(click){
-    let answerString = click.id;
-    let questionID = answerString[0] * 1;
-    let answerID = answerString[1] * 1;
-    let isCorrectAnswer = answerString.slice(2, 7);
-    let score = 0;
-
-    for (let i = 0; i < 4; i++){
+/* for (let i = 0; i < 4; i++){
        if (i !== answerID){
            console.log(`${questionID}${i}${isCorrectAnswer}`);
            if (isCorrectAnswer === 'true'){
@@ -100,6 +95,25 @@ function answerQuizz(click){
             document.getElementById(`${questionID}${i}false`).style.opacity = 0.5;
            }
         }
-    }
-    
+    } */
+
+    /*  // Dados da ID que vieram do This
+    let answerString = click.id;
+    let questionID = answerString[0] * 1;
+    let answerID = answerString[1] * 1;
+    let isCorrectAnswer = individualQuizz.questions[questionID].answers[answerID].isCorrectAnswer;
+    let isCorrectAnswerID = isCorrectAnswer.toString();
+
+    */
+
+function answerQuizz(click){
+
+
+let answers = document.querySelectorAll(".answer-unique");
+let pai = answers.parentNode;
+
+console.log(answers);
+
+
+
 }
