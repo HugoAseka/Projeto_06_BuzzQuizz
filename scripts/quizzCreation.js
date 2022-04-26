@@ -148,12 +148,14 @@ function toLevels() {
             image: question.querySelector(".wrong-answer.three input:nth-child(2)").value,
             isCorrectAnswer: false
         }
+
         if (!questionsConditions(i)) {
             alert("Corrija as informações da pergunta " + (i + 1));
             return
         }
 
     }
+    console.log(quizz);
     renderizeLevels();
 }
 
