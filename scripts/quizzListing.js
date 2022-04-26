@@ -1,5 +1,8 @@
 let individualQuizz = {};
-
+let pointCounter = 0;
+let errorCounter = 0;
+let result = 0;
+let quizID = 0;
 
 function createNewQuiz() {
     document.querySelector(".container-pagina-1").classList.add("hidden");
@@ -68,10 +71,11 @@ function renderizeUserQuizzes() {
 
 
 function quizToPlay(id) {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/4`);
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then((response) => {
         randomizeQuizz(response.data);
         individualQuizz = response.data;
+        quizID = response.data.id;
     });
     document.querySelector(".container-pagina-1").classList.add("hidden");
     document.querySelector(".container-pagina-2").classList.remove("hidden");
@@ -120,34 +124,6 @@ function renderizeQuizz(infoResponse) {
     }
 }
 
-/*    if (verifyAnswer === "false"){
-        document.getElementById(`text${click.id}`).style.color = "red";
-    } else {
-        document.getElementById(`text${click.id}`).style.color = "green";
-        pointcounter ++;
-    } */
-//   document.getElementById(`${click.id}`).style.opacity = 0.5;
-
-/* for (let i = 0; i < 4; i++){
-       if (i !== answerID){
-           console.log(`${questionID}${i}${isCorrectAnswer}`);
-           if (isCorrectAnswer === 'true'){
-            document.getElementById(`text${answerString}`).style.color = "green";
-            document.getElementById(`text${questionID}${i}false`).style.color = "red";
-            document.getElementById(`${questionID}${i}false`).style.opacity = 0.5;
-           }
-        }
-    } */
-
-/*  // Dados da ID que vieram do This
-let answerString = click.id;
-let questionID = answerString[0] * 1;
-let answerID = answerString[1] * 1;
-let isCorrectAnswer = individualQuizz.questions[questionID].answers[answerID].isCorrectAnswer;
-let isCorrectAnswerID = isCorrectAnswer.toString();
-
-*/
-
 function answerQuizz(click) {
 
     let questionID = click.id[0] * 1;
@@ -155,8 +131,10 @@ function answerQuizz(click) {
     let answersBox = document.querySelectorAll(".answers-box");
     let answerImgUnique = answersBox[questionID].querySelectorAll(".answer-unique img");
     let answerTextUnique = answersBox[questionID].querySelectorAll(".answer-unique .answer-unique-text");
+    
 
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i < answerImgUnique.length; i++){
+ 
         if (i !== answerID){
             document.getElementById(`${answerImgUnique[i].id}`).style.opacity = 0.5;
         } 
@@ -166,8 +144,76 @@ function answerQuizz(click) {
         } else {
             document.getElementById(`${answerTextUnique[i].id}`).style.color = "red";
         }
-        
+            document.getElementById(`${answerImgUnique[i].id}`).removeAttribute('onclick');
+    }
+    
+
+    if ((click.id.slice(2,7)) === 'true'){
+        pointCounter ++;
+    } else {
+        errorCounter ++;
     }
 
+    if ((pointCounter + errorCounter) === answersBox.length){
+    result = (pointCounter/(answersBox.length) * 100);
+    endQuizz(result);
+    }
+}
 
+function endQuizz(result){
+    
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${quizID}`);
+    promise.then((response) => {
+        individualQuizz = response.data;
+    });
+
+    let valueID = 0;
+    
+    if (result <= individualQuizz.levels[0].minValue){
+        valueID = 0;
+    }
+    else if (result <= individualQuizz.levels[1].minValue){
+        valueID = 1;
+    }
+    else if (result <= individualQuizz.levels[2].minValue){
+        valueID = 2;
+    }
+    else if (result <= individualQuizz.levels[3].minValue){
+        valueID = 3;
+    }
+
+renderizeResult(valueID);
+}
+
+function renderizeResult(value){
+    console.log(value)
+    console.log(individualQuizz);
+
+    const endContainer = document.querySelector(".final-quiz-container")
+
+    endContainer.innerHTML = 
+        `<div class="questions-result">
+            <div class="questions-result-title">
+                ${individualQuizz.levels[value].title}
+            </div>
+        <div class="questions-result-content">
+            <img class="questions-result-image" src="${individualQuizz.levels[value].image}">
+            <div class="questions-result-description">
+                ${individualQuizz.levels[value].text}
+        </div>
+    </div>
+
+</div>
+
+<div class="restart-quiz-button onclick="restartQuiz()">
+    Reiniciar Quizz
+</div>
+<div class="back-home-button onclick="returnHome()">
+    Voltar pra Home
+</div>`
+    }
+
+function restartQuiz(){
+    window.location.reload()
+    console.log("aaaa")
 }

@@ -357,7 +357,6 @@ ion-icon {
     font-size: 19px;
     line-height: 25px;
     color: #484848;
-    background-color: #EC362D;
 }
 
 .final-quiz-container {
@@ -398,6 +397,7 @@ ion-icon {
     justify-content: center;
     text-align: center;
     color: #818181;
+    cursor: pointer;
 
 }
 
