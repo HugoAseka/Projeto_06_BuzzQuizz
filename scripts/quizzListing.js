@@ -3,6 +3,7 @@ let pointCounter = 0;
 let errorCounter = 0;
 let result = 0;
 let quizID = 0;
+let marcador  = 0;
 
 function createNewQuiz() {
     document.querySelector(".container-pagina-1").classList.add("hidden");
@@ -71,6 +72,7 @@ function renderizeUserQuizzes() {
 
 
 function quizToPlay(id) {
+    marcador = id;
     const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then((response) => {
         randomizeQuizz(response.data);
@@ -147,7 +149,6 @@ function answerQuizz(click) {
             document.getElementById(`${answerImgUnique[i].id}`).removeAttribute('onclick');
     }
     
-
     if ((click.id.slice(2,7)) === 'true'){
         pointCounter ++;
     } else {
@@ -186,9 +187,7 @@ renderizeResult(valueID);
 }
 
 function renderizeResult(value){
-    console.log(value)
-    console.log(individualQuizz);
-
+ 
     const endContainer = document.querySelector(".final-quiz-container")
 
     endContainer.innerHTML = 
@@ -196,24 +195,27 @@ function renderizeResult(value){
             <div class="questions-result-title">
                 ${individualQuizz.levels[value].title}
             </div>
-        <div class="questions-result-content">
-            <img class="questions-result-image" src="${individualQuizz.levels[value].image}">
-            <div class="questions-result-description">
+            <div class="questions-result-content">
+                <img class="questions-result-image" src="${individualQuizz.levels[value].image}">
+                <div class="questions-result-description">
                 ${individualQuizz.levels[value].text}
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="restart-quiz-button" onclick="restartQuiz()">
+            Reiniciar Quizz
+        </div>
+        <div class="back-home-button" onclick="returnhome()">
+            Voltar pra Home
+        </div>`
+}
 
-</div>
+function restartQuiz() {
+    document.querySelector(".question-list").innerHTML = ""
+    document.querySelector(".banner").innerHTML = "";
+   quizToPlay(marcador);
+ }
 
-<div class="restart-quiz-button onclick="restartQuiz()">
-    Reiniciar Quizz
-</div>
-<div class="back-home-button onclick="returnHome()">
-    Voltar pra Home
-</div>`
-    }
-
-function restartQuiz(){
-    window.location.reload()
-    console.log("aaaa")
+function returnhome(){
+    window.location.reload();
 }
