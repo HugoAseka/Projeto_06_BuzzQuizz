@@ -34,7 +34,7 @@ function quizToPlay(id){
 
 function randomizeQuizz (infoResponse){
     for (let i = 0; i < infoResponse.questions.length; i++){    
-       let shufflin = infoResponse.questions[i].answers.sort( () => .5 - Math.random() );   
+       let shufflin = infoResponse.questions[i].answers.sort( () => .5 - Math.random() );
     }
     renderizeQuizz(infoResponse);
     document.querySelector(".screen32").innerHTML = ""; //parte do botão "acessarquizz" na pág 3.4
@@ -89,12 +89,17 @@ function answerQuizz(click){
     let questionID = answerString[0] * 1;
     let answerID = answerString[1] * 1;
     let isCorrectAnswer = answerString.slice(2, 7);
-    let pointcounter = 0;
- 
-    /*console.log(answerString);
-    console.log(questionID);
-    console.log(answerID);
-    console.log(isCorrectAnswer); */
+    let score = 0;
 
-
+    for (let i = 0; i < 4; i++){
+       if (i !== answerID){
+           console.log(`${questionID}${i}${isCorrectAnswer}`);
+           if (isCorrectAnswer === 'true'){
+            document.getElementById(`text${answerString}`).style.color = "green";
+            document.getElementById(`text${questionID}${i}false`).style.color = "red";
+            document.getElementById(`${questionID}${i}false`).style.opacity = 0.5;
+           }
+        }
+    }
+    
 }
