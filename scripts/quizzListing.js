@@ -134,12 +134,18 @@ function renderizeQuizz(infoResponse) {
 
 function answerQuizz(click){
 
-
-let answers = document.querySelectorAll(".answer-unique");
-let pai = answers.parentNode;
-
-console.log(answers);
-
-
+    let questionID = click.id[0] * 1;
+    let answerID = click.id[1] * 1;
+    let isCorrectAnswerID = click.id.slice(2,7);
+    console.log(answerID)
+    for (i = 0; i < 4; i++){
+        if (i !== answerID){
+            if (isCorrectAnswerID === 'false'){
+                console.log(`${questionID}${i}${isCorrectAnswerID}`);
+            }
+            
+        }
+    }
+    
 
 }
