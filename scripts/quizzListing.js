@@ -1,5 +1,6 @@
 let individualQuizz = {};
 
+
 function createNewQuiz() {
     document.querySelector(".container-pagina-1").classList.add("hidden");
     document.querySelector(".creation").classList.remove("hidden");
@@ -26,6 +27,19 @@ function renderizeQuizzes(infoResponse) {
 }
 
 // começo renderizar quizzes do usuario
+
+if (userIds.length !== 0) {
+    document.querySelector(".created-quizzes").classList.add("hidden");
+    document.querySelector(".my-quizzes").classList.remove("hidden");
+} else {
+    document.querySelector(".created-quizzes").classList.remove("hidden");
+    document.querySelector(".my-quizzes").classList.add("hidden");
+}
+
+
+
+
+
 renderizeUserQuizzes();
 function renderizeUserQuizzes() {
     const list = document.querySelector(".local-quizzes");
@@ -33,8 +47,6 @@ function renderizeUserQuizzes() {
     for (let i = 0; i < userIds.length; i++) {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${userIds[i]}`)
         promise.then((response) => {
-            console.log(response.data)
-            console.log(userIds[i]);
             let id = response.data.id;
             let titulo = response.data.title;
             let imagem = response.data.image;
@@ -100,8 +112,8 @@ function renderizeQuizz(infoResponse) {
         questionBox.innerHTML +=
             `</div>
                 </div>
-            </div>`;            
-            }  
+            </div>`;
+    }
 }
 
 /*    if (verifyAnswer === "false"){
@@ -123,22 +135,22 @@ function renderizeQuizz(infoResponse) {
         }
     } */
 
-    /*  // Dados da ID que vieram do This
-    let answerString = click.id;
-    let questionID = answerString[0] * 1;
-    let answerID = answerString[1] * 1;
-    let isCorrectAnswer = individualQuizz.questions[questionID].answers[answerID].isCorrectAnswer;
-    let isCorrectAnswerID = isCorrectAnswer.toString();
+/*  // Dados da ID que vieram do This
+let answerString = click.id;
+let questionID = answerString[0] * 1;
+let answerID = answerString[1] * 1;
+let isCorrectAnswer = individualQuizz.questions[questionID].answers[answerID].isCorrectAnswer;
+let isCorrectAnswerID = isCorrectAnswer.toString();
 
-    */
+*/
 
-function answerQuizz(click){
+function answerQuizz(click) {
 
 
-let answers = document.querySelectorAll(".answer-unique");
-let pai = answers.parentNode;
+    let answers = document.querySelectorAll(".answer-unique");
+    let pai = answers.parentNode;
 
-console.log(answers);
+    console.log(answers);
 
 
 
