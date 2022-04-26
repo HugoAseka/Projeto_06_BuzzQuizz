@@ -1,3 +1,11 @@
+let numberOfQuestions = 0;
+let numberOfLevels = 0;
+let userIds = [];
+if (localStorage.getItem("userIds") !== null) {
+    userIds = JSON.parse(localStorage.getItem("userIds"));
+}
+
+
 let quizz = {
     title: "",
     image: "",
@@ -31,13 +39,6 @@ let quizz = {
     ]
 };
 
-
-let numberOfQuestions = 0;
-let numberOfLevels = 0;
-let userIds = [];
-if (localStorage.getItem("userIds") !== null) {
-    userIds = JSON.parse(localStorage.getItem("userIds"));
-}
 
 
 
